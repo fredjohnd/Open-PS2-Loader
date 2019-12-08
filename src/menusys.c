@@ -1078,4 +1078,8 @@ void menuHandleInputGameMenu()
     if (getKeyOn(KEY_START) || getKeyOn(gSelectButton == KEY_CIRCLE ? KEY_CROSS : KEY_CIRCLE)) {
         guiSwitchScreen(GUI_SCREEN_MAIN);
     }
+
+    if (getKeyOn(KEY_R3)) {
+        filterGamesByGenre();
+    }
 }

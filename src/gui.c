@@ -1455,6 +1455,11 @@ void guiSwitchScreen(int target)
     screenHandlerTarget = &screenHandlers[target];
 }
 
+void filterGamesByGenre()
+{
+    LOG("filterGamesByGenre!!\n");
+}
+
 struct gui_update_t *guiOpCreate(gui_op_type_t type)
 {
     struct gui_update_t *op = (struct gui_update_t *)malloc(sizeof(struct gui_update_t));
