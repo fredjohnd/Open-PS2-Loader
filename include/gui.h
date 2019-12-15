@@ -60,6 +60,8 @@ int guiFrameId;
 
 void guiSwitchScreen(int target);
 
+void filterGamesByGenre();
+
 void guiReloadScreenExtents();
 
 /** Initializes the GUI */
@@ -130,7 +132,6 @@ void guiShowUIConfig();
 void guiShowAudioConfig();
 void guiShowNetConfig();
 void guiShowParentalLockConfig();
-
 void guiDelay(int milliSeconds);
 void guiCheckNotifications(int checkTheme, int checkLang);
 
@@ -154,5 +155,7 @@ void guiWarning(const char *text, int count);
 int guiConfirmVideoMode(void);
 
 int guiGameShowRemoveSettings(config_set_t *configSet, config_set_t *configGame);
+
+void guiGameShowGenreFilter();
 
 #endif

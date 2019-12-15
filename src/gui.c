@@ -1457,7 +1457,10 @@ void guiSwitchScreen(int target)
 
 void filterGamesByGenre()
 {
-    LOG("filterGamesByGenre!!\n");
+    scr_printf(" Loading, Please Wait...\n");
+    guiGameShowGenreFilter();
+    // diaExecuteDialog(diaGenreFilter, -1, 1, NULL);
+    // guiMsgBox("Hello Fred", 0, NULL);
 }
 
 struct gui_update_t *guiOpCreate(gui_op_type_t type)
@@ -1633,6 +1636,53 @@ int guiConfirmVideoMode(void)
     }
 
     return terminate - 1;
+}
+
+void guiGameShowGenreFilter()
+{
+    int terminate = 0;
+    int choice = 0;
+
+    const char *genres[5];
+    genres[0] = "All";
+    genres[1] = "Fighting";
+    genres[2] = "Racing";
+    genres[3] = "Football";
+    genres[4] = "RPG";
+
+    sfxPlay(SFX_MESSAGE);
+    while (!terminate) {
+        guiStartFrame();
+
+        readPads();
+
+        if (getKeyOn(KEY_UP)) {
+
+            if (choice == 0)
+                choice = 4;
+            else
+                choice = choice - 1;
+
+        } else if (getKeyOn(KEY_DOWN)) {
+            if (choice == 4)
+                choice = 0;
+            else
+                choice = choice + 1;
+
+        } else if (getKeyOn(KEY_CROSS)) {
+            terminate = 1;
+        }
+
+        guiShow();
+        rmDrawRect(0, 0, screenWidth, screenHeight, gColDarker);
+        rmDrawLine(50, 75, screenWidth - 50, 75, gColWhite);
+        rmDrawLine(50, 410, screenWidth - 50, 410, gColWhite);
+        fntRenderString(gTheme->fonts[0], screenWidth >> 1, gTheme->usedHeight >> 1, ALIGN_CENTER, 0, 0, genres[choice], gTheme->textColor);
+        guiEndFrame();
+    }
+
+    guiMsgBox(genres[choice], 1, NULL);
+
 }
 
 int guiGameShowRemoveSettings(config_set_t *configSet, config_set_t *configGame)

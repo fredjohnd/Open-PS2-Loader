@@ -901,6 +901,8 @@ void menuHandleInputMain()
         menuFirstPage();
     } else if (getKeyOn(KEY_R2)) { // end
         menuLastPage();
+    } else if (getKey(KEY_R3)) {
+        filterGamesByGenre();
 
         // Last Played Auto Start
     } else { // None valid key pressed
@@ -1077,9 +1079,5 @@ void menuHandleInputGameMenu()
 
     if (getKeyOn(KEY_START) || getKeyOn(gSelectButton == KEY_CIRCLE ? KEY_CROSS : KEY_CIRCLE)) {
         guiSwitchScreen(GUI_SCREEN_MAIN);
-    }
-
-    if (getKeyOn(KEY_R3)) {
-        filterGamesByGenre();
     }
 }
